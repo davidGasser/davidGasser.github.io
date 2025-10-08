@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Gasser - AI & Robotics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            width: 100vw; 
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 60px 60px 60px 60px;
+            margin: 0;
+        }
+
+        /* Left Side */
+        .hero-left {
+            flex: 2;
+            color: white;
+            z-index: 2;
+            max-width: 50vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 60px 60px;
+        }
+
+        .hero-left h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .hero-left p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        .hero-links a {
+            padding: 12px 28px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        /* Right Side - Image */
+        .hero-right {
+            flex: 2;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-container {
+            position: relative;
+            inset-block-start: 230px;
+            width: 400px;
+            height: auto;
+            display: flex;
+            align-items: end;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.3));
+        }
+
+        /* Animated Lines SVG */
+        .animation-svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            z-index: 1;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+            color: white;
+            font-size: 24px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-top: 60px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #333;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            padding: 0px 200px;
+        }
+
+        .edu-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .edu-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .edu-card .degree {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .edu-card .institution {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .edu-card .grade {
+            color: #764ba2;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Experience */
+
+        .experience-grid {
+            position: relative; 
+            padding-top: 50px;
+            padding-left: 35%; 
+        }
+        .experience-item {
+            border-left: 3px solid #667eea;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            left: -9px;
+            top: 0;
+        }
+
+        .experience-item h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .company {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .experience-item .date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .experience-item ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .experience-item li {
+            margin-bottom: 8px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            padding: 0px 300px
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .skill-category h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 50px 100px;
+            margin-bottom: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-date {
+            color: #555050;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-left">
+            <h1>David Gasser</h1>
+            <p>AI & Robotics Engineer | Research & Innovation</p>
+            <div class="hero-links">
+                <a href="mailto:davidgasser12@gmail.com">Email</a>
+                <a href="https://linkedin.com/in/d-gasser" target="_blank">LinkedIn</a>
+                <a href="https://github.com/davidGasser" target="_blank">GitHub</a>
+                <a href="#education">Learn More</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="image-container">
+                <img src="image_myself.png" alt="David Gasser" class="profile-image">
+            </div>
+        </div>
+
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="edu-card">
+                <h3>Master's Degree</h3>
+                <div class="degree">M.Sc. Robotics, Cognition, Intelligence</div>
+                <div class="institution">Technical University of Munich</div>
+                <div class="grade">Grade: 1.4 (≈ 3.7 US GPA)</div>
+                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Master's Thesis: Meta-Labeling Framework for Financial Time Series Classification</p>
+            </div>
+            <div class="edu-card">
+                <h3>Exchange Semester</h3>
+                <div class="degree">2nd Master's Semester</div>
+                <div class="institution">National Taiwan University</div>
+                <div class="grade">Grade: 1.4 (≈ 3.7 US GPA)</div>
+                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">24 ECTS in Robotics, Bioinformatics, Automata Theory, and Chinese</p>
+            </div>
+            <div class="edu-card">
+                <h3>Bachelor's Degree</h3>
+                <div class="degree">B.Sc. Electrical and Computer Engineering</div>
+                <div class="institution">Technical University of Munich</div>
+                <div class="grade">Grade: 1.9 (≈ 3.1 US GPA)</div>
+                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Bachelor's Thesis: Deep Learning Recommender Systems</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-item">
+                <h3>Research Intern</h3>
+                <div class="company">National Institute of Informatics</div>
+                <div class="date">Mar 2025 - Sep 2025 | Tokyo, Japan (6 months, full-time)</div>
+                <ul>
+                    <li>Researching AI for time series prediction</li>
+                    <li>Fine-tuning, evaluating, and combining foundational AI models</li>
+                    <li>Designing time series specific novel model architectures</li>
+                    <li>Basis for Master's Thesis</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Intern - AI Engineering & IT Strategy</h3>
+                <div class="company">Munich Re</div>
+                <div class="date">May 2024 - Nov 2024 | Munich, Germany (6 months, full-time)</div>
+                <ul>
+                    <li>AI Engineering specializing in RAG/Semantic Search</li>
+                    <li>Vector database migration to Azure (3 months)</li>
+                    <li>IT Strategy focusing on Robotics and AI: Trend research and operation optimization (3 months)</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Working Student</h3>
+                <div class="company">Siemens AG / KeySpot GmbH</div>
+                <div class="date">Sep 2023 - Apr 2024 | Munich, Germany (part-time, 18h/week)</div>
+                <ul>
+                    <li>Integrating AI into production systems</li>
+                    <li>Data mining and processing</li>
+                    <li>Fine-tuning and deploying LLMs</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Intern - Data Processing</h3>
+                <div class="company">Chair of Data Processing, TUM</div>
+                <div class="date">Mar 2021 - May 2021 | Munich, Germany (9 weeks, full-time)</div>
+                <ul>
+                    <li>Web scraping static and dynamic websites for tourism data</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2>Skills & Qualifications</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Software & AI</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">HuggingFace</span>
+                    <span class="skill-tag">pandas</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Engineering & Backend</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Go</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Frontend & Visualization</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Seaborn</span>
+                    <span class="skill-tag">NetworkX</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Robotics & Systems</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">ROS</span>
+                    <span class="skill-tag">MATLAB</span>
+                    <span class="skill-tag">Linux Bash</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Azure</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Data & Web</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Web Scraping</span>
+                    <span class="skill-tag">Scrapy</span>
+                    <span class="skill-tag">Selenium</span>
+                    <span class="skill-tag">LaTeX</span>
+                    <span class="skill-tag">Solidity</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">German (C2)</span>
+                    <span class="skill-tag">English (C2)</span>
+                    <span class="skill-tag">Spanish (B1)</span>
+                    <span class="skill-tag">Chinese (A2)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2>Selected Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Blockchain Supply Chain Tracking</h3>
+                </div>
+                <div class="project-content">
+                    <div class="project-date">June 2023 | Munich, Germany</div>
+                    <p>Designed and implemented a blockchain system for tracking product sustainability. The system tracks CO₂ tokens according to emission standards and models the sourcing, exchange, and production of materials on the chain in a traceable but confidential manner.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Painting Robot</h3>
+                </div>
+                <div class="project-content">
+                    <div class="project-date">Nov 2022 | Taipei, Taiwan</div>
+                    <p>Implemented a robot arm (TM5-700) that draws acrylic black and white paintings. User input captured via speech detection sent to DALL-E for image creation. Anipainter converts images to brush strokes, then into robot drawing commands.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Creative Greeting Card Generator</h3>
+                </div>
+                <div class="project-content">
+                    <div class="project-date">Oct 2021 | Munich, Germany</div>
+                    <p>Full stack development of a reactive website exploring the creative capabilities of computers. Captures user inputs and displays multimedia output.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 David Gasser</p>
+        <p>
+            <a href="mailto:davidgasser12@gmail.com">Email</a> | 
+            <a href="https://linkedin.com/in/d-gasser" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/davidGasser" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
