@@ -4,10 +4,15 @@ const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = canvas.getBoundingClientRect().height;
 
-let center = {
-    x: 3* width / 4,
-    y:  52* height/ 100
-};
+const profileImage = document.querySelector('.profile-image');
+let center = { x: 0, y: 0 };
+
+function updateCenter() {
+    if (!profileImage) return;
+    const rect = profileImage.getBoundingClientRect();
+    center.x = rect.left + rect.width / 2;
+    center.y = rect.top + rect.height / 2 - 90;
+}
 
 // Perlin Noise generator
 const perlin = {
@@ -145,7 +150,10 @@ function animate() {
 window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = canvas.getBoundingClientRect().height;
+    updateCenter();
     perlin.seed(); // Re-seed noise on resize
 });
+
+window.addEventListener('load', updateCenter);
 
 animate();

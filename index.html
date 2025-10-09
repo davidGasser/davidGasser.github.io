@@ -31,8 +31,7 @@
         /* Hero Section */
         .hero {
             height: 60vh;
-            width: 100vw; 
-            min-width: 1200px; /* Added to prevent layout breaking */
+
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
@@ -58,7 +57,6 @@
             flex: 2;
             color: white;
             z-index: 2;
-            max-width: 50vw;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -70,6 +68,7 @@
             margin-bottom: 20px;
             font-weight: 700;
             letter-spacing: -2px;
+            white-space: nowrap;
         }
 
         .hero-left p {
@@ -77,6 +76,7 @@
             margin-bottom: 40px;
             opacity: 0.95;
             font-weight: 300;
+            white-space: nowrap;
         }
 
         .hero-links {
@@ -102,7 +102,6 @@
         /* Right Side - Image */
         .hero-right {
             flex: 2;
-            min-width: 600px; /* Added to prevent layout breaking */
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -179,7 +178,6 @@
         /* Education */
         .education-grid {
             display: grid;
-            min-width: 1200px; /* Added to prevent layout breaking */
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 50px;
