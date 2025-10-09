@@ -24,13 +24,15 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            overflow-x: hidden;
+            overflow-x: auto;
+            min-width: 1200px; /* Added to prevent layout breaking */
         }
 
         /* Hero Section */
         .hero {
             height: 60vh;
             width: 100vw; 
+            min-width: 1200px; /* Added to prevent layout breaking */
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
@@ -40,6 +42,16 @@
             padding: 60px 60px 60px 60px;
             margin: 0;
         }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
 
         /* Left Side */
         .hero-left {
@@ -90,6 +102,7 @@
         /* Right Side - Image */
         .hero-right {
             flex: 2;
+            min-width: 1200px; /* Added to prevent layout breaking */
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -166,6 +179,7 @@
         /* Education */
         .education-grid {
             display: grid;
+            min-width: 1200px; /* Added to prevent layout breaking */
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 50px;
@@ -203,8 +217,8 @@
         }
 
         .edu-card .grade {
-            color: #764ba2;
-            font-weight: 600;
+            color: #667eea;
+            font-weight: 700;
             font-size: 0.9rem;
         }
 
@@ -379,6 +393,7 @@
 <body>
     <!-- Hero Section -->
     <section class="hero" id="hero">
+        <canvas id="hero-canvas"></canvas>
         <div class="hero-left">
             <h1>David Gasser</h1>
             <p>AI & Robotics Engineer | Research & Innovation</p>
@@ -407,21 +422,21 @@
                 <h3>Master's Degree</h3>
                 <div class="degree">M.Sc. Robotics, Cognition, Intelligence</div>
                 <div class="institution">Technical University of Munich</div>
-                <div class="grade">Grade: 1.4 (≈ 3.7 US GPA)</div>
+                <div class="grade">Grade: 1.4 (~3.7 US GPA)</div>
                 <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Master's Thesis: Meta-Labeling Framework for Financial Time Series Classification</p>
             </div>
             <div class="edu-card">
                 <h3>Exchange Semester</h3>
                 <div class="degree">2nd Master's Semester</div>
                 <div class="institution">National Taiwan University</div>
-                <div class="grade">Grade: 1.4 (≈ 3.7 US GPA)</div>
+                <div class="grade">Grade: 1.4 (~3.7 US GPA)</div>
                 <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">24 ECTS in Robotics, Bioinformatics, Automata Theory, and Chinese</p>
             </div>
             <div class="edu-card">
                 <h3>Bachelor's Degree</h3>
                 <div class="degree">B.Sc. Electrical and Computer Engineering</div>
                 <div class="institution">Technical University of Munich</div>
-                <div class="grade">Grade: 1.9 (≈ 3.1 US GPA)</div>
+                <div class="grade">Grade: 1.9 (~3.1 US GPA)</div>
                 <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Bachelor's Thesis: Deep Learning Recommender Systems</p>
             </div>
         </div>
@@ -588,6 +603,7 @@
         </p>
     </footer>
 
+    <script src="blobs.js"></script>
     <script>
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
