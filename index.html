@@ -15,6 +15,8 @@
             width: 100%;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
         }
 
         body {
@@ -225,7 +227,7 @@
         .experience-grid {
             position: relative; 
             padding-top: 50px;
-            padding-left: 35%; 
+            padding-left: clamp(100px, 35%, 500px); 
         }
         .experience-item {
             border-left: 3px solid #667eea;
@@ -273,7 +275,7 @@
         /* Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             margin-top: 50px;
             padding: 0px 300px
@@ -284,6 +286,14 @@
             padding: 25px;
             border-radius: 10px;
             border: 1px solid rgba(102, 126, 234, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .skill-category h3 {
@@ -292,26 +302,9 @@
             font-size: 1.1rem;
         }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background: white;
-            padding: 8px 15px;
-            border-radius: 20px;
+        .skill-category p {
+            color: #ffffff;
             font-size: 0.9rem;
-            color: #333;
-            border: 1px solid #ddd;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
         }
 
         /* Projects */
@@ -396,7 +389,7 @@
             <h1>David Gasser</h1>
             <p>AI & Robotics Engineer | Research & Innovation</p>
             <div class="hero-links">
-                <a href="mailto:davidgasser12@gmail.com">Email</a>
+                <a href="mailto:davidgasser12@gmail.com" id="email-link">Email</a>
                 <a href="https://linkedin.com/in/d-gasser" target="_blank">LinkedIn</a>
                 <a href="https://github.com/davidGasser" target="_blank">GitHub</a>
                 <a href="David_Gasser_public_CV_2025.pdf" download>Download CV</a>  
@@ -412,79 +405,77 @@
         <div class="scroll-indicator">↓</div>
     </section>
 
-    <!-- Education -->
-    <section id="education">
-        <h2>Education</h2>
-        <div class="education-grid">
-            <div class="edu-card">
-                <h3>Master's Degree</h3>
-                <div class="degree">M.Sc. Robotics, Cognition, Intelligence</div>
-                <div class="institution">Technical University of Munich</div>
-                <div class="grade">Grade: 1.4 (~3.7 US GPA)</div>
-                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Master's Thesis: Meta-Labeling Framework for Financial Time Series Classification</p>
-            </div>
-            <div class="edu-card">
-                <h3>Exchange Semester</h3>
-                <div class="degree">2nd Master's Semester</div>
-                <div class="institution">National Taiwan University</div>
-                <div class="grade">Grade: 1.4 (~3.7 US GPA)</div>
-                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">24 ECTS in Robotics, Bioinformatics, Automata Theory, and Chinese</p>
-            </div>
-            <div class="edu-card">
-                <h3>Bachelor's Degree</h3>
-                <div class="degree">B.Sc. Electrical and Computer Engineering</div>
-                <div class="institution">Technical University of Munich</div>
-                <div class="grade">Grade: 1.9 (~3.1 US GPA)</div>
-                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Bachelor's Thesis: Deep Learning Recommender Systems</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Experience -->
     <section id="experience">
         <h2>Professional Experience</h2>
         <div class="experience-grid">
             <div class="experience-item">
-                <h3>Research Intern</h3>
-                <div class="company">National Institute of Informatics</div>
-                <div class="date">Mar 2025 - Sep 2025 | Tokyo, Japan (6 months, full-time)</div>
+                <h3>AI Researcher</h3>
+                <div class="company">Japan National Institute of Informatics</div>
+                <div class="date">Mar 2025 - Sep 2025 | Internship | Tokyo, Japan</div>
                 <ul>
-                    <li>Researching AI for time series prediction</li>
-                    <li>Fine-tuning, evaluating, and combining foundational AI models</li>
-                    <li>Designing time series specific novel model architectures</li>
-                    <li>Basis for Master's Thesis</li>
+                    <li>Researched AI for time series prediction. Fine-tuned, evaluated, and deployed foundation models.</li>
+                    <li>Developed and evaluated novel transformer-based architectures for structured financial data.</li>
+                    <li>Coauthored paper on transformer-based time series forecasting; basis for Master's thesis.</li>
                 </ul>
             </div>
 
             <div class="experience-item">
-                <h3>Intern - AI Engineering & IT Strategy</h3>
-                <div class="company">Munich Re</div>
-                <div class="date">May 2024 - Nov 2024 | Munich, Germany (6 months, full-time)</div>
+                <h3>IT Strategist</h3>
+                <div class="company">Munich Re AG</div>
+                <div class="date">Aug 2024 - Nov 2024 | Internship | Munich, Germany</div>
                 <ul>
-                    <li>AI Engineering specializing in RAG/Semantic Search</li>
-                    <li>Vector database migration to Azure (3 months)</li>
-                    <li>IT Strategy focusing on Robotics and AI: Trend research and operation optimization (3 months)</li>
+                    <li>Conducted and managed tech trend research, culminating in an externally published report.</li>
+                    <li>Tracked and supported internal as well as external IT product compliance.</li>
+                    <li>Studied new insurance opportunities and enhanced external partner satisfaction and performance.</li>
                 </ul>
             </div>
 
             <div class="experience-item">
-                <h3>Working Student</h3>
-                <div class="company">Siemens AG / KeySpot GmbH</div>
-                <div class="date">Sep 2023 - Apr 2024 | Munich, Germany (part-time, 18h/week)</div>
+                <h3>AI Engineer</h3>
+                <div class="company">Munich Re AG</div>
+                <div class="date">May 2024 - Aug 2024 | Internship | Munich, Germany</div>
                 <ul>
-                    <li>Integrating AI into production systems</li>
-                    <li>Data mining and processing</li>
-                    <li>Fine-tuning and deploying LLMs</li>
+                    <li>Contributed, presented, and demoed an internal tool utilizing RAG/Semantic Search.</li>
+                    <li>Conducted a vector database migration to Azure, resulting in a 30% performance improvement.</li>
+                    <li>Developed a POC for Apache Airflow as a workflow orchestrator.</li>
                 </ul>
             </div>
 
             <div class="experience-item">
-                <h3>Intern - Data Processing</h3>
-                <div class="company">Chair of Data Processing, TUM</div>
-                <div class="date">Mar 2021 - May 2021 | Munich, Germany (9 weeks, full-time)</div>
+                <h3>Software Engineer</h3>
+                <div class="company">Siemens AG/KeySpot GmbH</div>
+                <div class="date">Sep 2023 - Apr 2024 | Internship | Munich, Germany</div>
                 <ul>
-                    <li>Web scraping static and dynamic websites for tourism data</li>
+                    <li>Implemented ML-driven table recognition software for technical datasheets.</li>
+                    <li>Built and deployed a microservice for automatic document format conversion.</li>
+                    <li>Evaluated libraries for document change detection and management.</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+        <!-- Education -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="edu-card">
+                <h3>M.Sc. Robotics, Cognition, Intelligence</h3>
+                <div class="degree">Technical University of Munich</div>
+                <div class="institution">proj. 1.4/US GPA 3.7</div>
+                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Master's thesis in the field of AI for Financial Time Series Classification.</p>
+            </div>
+            <div class="edu-card">
+                <h3>Exchange semester</h3>
+                <div class="degree">National Taiwan University</div>
+                <div class="institution">1.4/US GPA 3.7</div>
+                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Coursework consisted of 24 ECTS spanning Robotics, Bioinformatics, Automata Theory, and Mandarin.</p>
+            </div>
+            <div class="edu-card">
+                <h3>B.Sc. Electrical and Computer Engineering</h3>
+                <div class="degree">Technical University of Munich</div>
+                <div class="institution">1.9/US GPA 3.1</div>
+                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Bachelor's Thesis in the field of Deep Learning Recommender Systems.</p>
             </div>
         </div>
     </section>
@@ -494,66 +485,34 @@
         <h2>Skills & Qualifications</h2>
         <div class="skills-grid">
             <div class="skill-category">
-                <h3>Software & AI</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">PyTorch</span>
-                    <span class="skill-tag">Keras</span>
-                    <span class="skill-tag">HuggingFace</span>
-                    <span class="skill-tag">pandas</span>
-                </div>
+                <h3>Programming:</h3>
+                <p>Python, Go, C++, C, Solidity, JavaScript</p>
             </div>
             <div class="skill-category">
-                <h3>Engineering & Backend</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">C</span>
-                    <span class="skill-tag">Go</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Django</span>
-                    <span class="skill-tag">Docker</span>
-                </div>
+                <h3>AI/ML:</h3>
+                <p>PyTorch, TensorFlow, HuggingFace, Optuna, Tensorboard, scikit-learn, pandas, NumPy</p>
             </div>
             <div class="skill-category">
-                <h3>Frontend & Visualization</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">Matplotlib</span>
-                    <span class="skill-tag">Seaborn</span>
-                    <span class="skill-tag">NetworkX</span>
-                </div>
+                <h3>Deployment:</h3>
+                <p>Git, Docker, Azure, Anaconda, Databricks, Linux, CI/CD</p>
             </div>
             <div class="skill-category">
-                <h3>Robotics & Systems</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">ROS</span>
-                    <span class="skill-tag">MATLAB</span>
-                    <span class="skill-tag">Linux Bash</span>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Azure</span>
-                </div>
+                <h3>Visualization:</h3>
+                <p>Matplotlib, Seaborn, NetworkX</p>
             </div>
             <div class="skill-category">
-                <h3>Data & Web</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Web Scraping</span>
-                    <span class="skill-tag">Scrapy</span>
-                    <span class="skill-tag">Selenium</span>
-                    <span class="skill-tag">LaTeX</span>
-                    <span class="skill-tag">Solidity</span>
-                </div>
+                <h3>Websites:</h3>
+                <p>Django, React, HTML, CSS, Streamlit, Scrapy, Selenium</p>
             </div>
             <div class="skill-category">
-                <h3>Languages</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">German (C2)</span>
-                    <span class="skill-tag">English (C2)</span>
-                    <span class="skill-tag">Spanish (B1)</span>
-                    <span class="skill-tag">Chinese (A2)</span>
-                </div>
+                <h3>Other Tools:</h3>
+                <p>Obsidian, Hyperledger Fabric, LaTeX, Gemini CLI, MATLAB, ROS</p>
             </div>
+            <div class="skill-category">
+                <h3>Languages:</h3>
+                <p>German (mother tongue), English (mother tongue), Spanish (B1), Mandarin (A2)</p>
+            </div>
+
         </div>
     </section>
 
@@ -614,6 +573,20 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Copy email to clipboard
+        const emailLink = document.getElementById('email-link');
+        emailLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            const email = 'davidgasser12@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const originalText = emailLink.innerHTML;
+                emailLink.innerHTML = 'Copied!';
+                setTimeout(() => {
+                    emailLink.innerHTML = originalText;
+                }, 2000);
             });
         });
     </script>
