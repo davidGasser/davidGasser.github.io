@@ -90,14 +90,14 @@ class Blob {
 
         for (let i = 0; i < numPoints; i++) {
             const angle = i * angleStep;
-            
+
             // Use Perlin noise for organic radius variation
             const noiseX = Math.cos(angle) * 2 + 1;
             const noiseY = Math.sin(angle) * 2 + 1;
             const noiseVal = perlin.get(noiseX + this.noiseStep, noiseY + this.noiseStep);
-            
+
             const r = this.radius * (1 + noiseVal * 0.2);
-            
+
             const x = this.x + Math.cos(angle) * r;
             const y = this.y + Math.sin(angle) * r;
 
@@ -112,7 +112,7 @@ class Blob {
 
                 const cpX = (prevX + x) / 2;
                 const cpY = (prevY + y) / 2;
-                
+
                 ctx.quadraticCurveTo(prevX, prevY, cpX, cpY);
             }
         }
@@ -121,23 +121,8 @@ class Blob {
     }
 }
 
-const ring_00 = new Blob(center.x, center.y, 50, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_01 = new Blob(center.x, center.y, 65, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_02 = new Blob(center.x, center.y, 82, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_03 = new Blob(center.x, center.y, 105, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_04 = new Blob(center.x, center.y, 130, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_05 = new Blob(center.x, center.y, 150, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_06 = new Blob(center.x, center.y, 170, 'rgba(5, 215, 243, 0)', 'rgba(16, 187, 230, 0.79)');
-const ring_1 = new Blob(center.x, center.y, 220, 'rgba(5, 215, 243, 0)', 'rgba(91, 16, 230, 0.79)');
-const ring_2 = new Blob(center.x, center.y, 270, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_3 = new Blob(center.x, center.y, 320, 'rgba(5, 215, 243, 0)', 'rgba(16, 187, 230, 0.79)');
-const ring_4 = new Blob(center.x, center.y, 390, 'rgba(5, 215, 243, 0)', 'rgba(91, 16, 230, 0.79)');
-const ring_5 = new Blob(center.x, center.y, 470, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
-const ring_6 = new Blob(center.x, center.y, 570, 'rgba(5, 215, 243, 0)', 'rgba(16, 187, 230, 0.79)');
-const ring_7 = new Blob(center.x, center.y, 670, 'rgba(5, 215, 243, 0)', 'rgba(91, 16, 230, 0.79)');
-const ring_8 = new Blob(center.x, center.y, 770, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+let blob_list = [];
 
-const blob_list = [ring_06, ring_1, ring_2, ring_3, ring_4, ring_5, ring_6, ring_7, ring_8]
 function animate() {
     ctx.clearRect(0, 0, width, height);
     for (const blob of blob_list) {
@@ -147,6 +132,33 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
+function initBlobs() {
+    // Update center position first
+    updateCenter();
+
+    // Create blobs at the correct position
+    const ring_00 = new Blob(center.x, center.y, 50, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_01 = new Blob(center.x, center.y, 65, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_02 = new Blob(center.x, center.y, 82, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_03 = new Blob(center.x, center.y, 105, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_04 = new Blob(center.x, center.y, 130, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_05 = new Blob(center.x, center.y, 150, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_06 = new Blob(center.x, center.y, 170, 'rgba(5, 215, 243, 0)', 'rgba(16, 187, 230, 0.79)');
+    const ring_1 = new Blob(center.x, center.y, 220, 'rgba(5, 215, 243, 0)', 'rgba(91, 16, 230, 0.79)');
+    const ring_2 = new Blob(center.x, center.y, 270, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_3 = new Blob(center.x, center.y, 320, 'rgba(5, 215, 243, 0)', 'rgba(16, 187, 230, 0.79)');
+    const ring_4 = new Blob(center.x, center.y, 390, 'rgba(5, 215, 243, 0)', 'rgba(91, 16, 230, 0.79)');
+    const ring_5 = new Blob(center.x, center.y, 470, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+    const ring_6 = new Blob(center.x, center.y, 570, 'rgba(5, 215, 243, 0)', 'rgba(16, 187, 230, 0.79)');
+    const ring_7 = new Blob(center.x, center.y, 670, 'rgba(5, 215, 243, 0)', 'rgba(91, 16, 230, 0.79)');
+    const ring_8 = new Blob(center.x, center.y, 770, 'rgba(5, 215, 243, 0)', 'rgba(123, 16, 230, 0.79)');
+
+    blob_list = [ring_06, ring_1, ring_2, ring_3, ring_4, ring_5, ring_6, ring_7, ring_8];
+
+    // Start animation
+    animate();
+}
+
 window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = canvas.getBoundingClientRect().height;
@@ -154,6 +166,5 @@ window.addEventListener('resize', () => {
     perlin.seed(); // Re-seed noise on resize
 });
 
-window.addEventListener('load', updateCenter);
-
-animate();
+// Initialize blobs after the page has loaded
+window.addEventListener('load', initBlobs);
